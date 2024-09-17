@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class Grass : MonoBehaviour
 {
-    public Material[] materials;
+    public Material[] materials;    // shader of materials must be "Shader Graphs/Grass"
     public Transform player;
     Vector3 position;
     Vector3 headPosition;
@@ -35,6 +35,8 @@ public class Grass : MonoBehaviour
             // headPosition = player.transform.position + (player.transform.up * 2.5f);
 
             // short grass
+            // position and headPosition dictate how much grass should be deformed based on
+            // the grass's distance from the position and headPosition
             position = player.transform.position;
             headPosition = player.transform.position + (player.transform.up * 0.5f);
             int length = materials.Length;

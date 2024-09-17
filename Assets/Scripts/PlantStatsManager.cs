@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlantStatsManager : MonoBehaviour
 {
+    // Length of ray cast perpendicularly from plant -> should be able to intersect with DayCollider, NightCollider, and Rain
     private float rayMaxDistance = 200f;
+    // Layer that interacts with ray cast
     private LayerMask raycastMask;
 
+    // Amount of sunlight stored in plant
     private float m_sunlightScore;
     [SerializeField] private float sunlightMax = 50f;
     [SerializeField] private float sunlightIncreaseFactor = 5f;
@@ -29,6 +32,7 @@ public class PlantStatsManager : MonoBehaviour
         }
     }
 
+    // Amount of water stored in plant
     private float m_waterScore;
     [SerializeField] private float waterMax = 50f;
     [SerializeField] private float waterIncreaseFactor = 5f;
@@ -65,6 +69,9 @@ public class PlantStatsManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Cast ray perpendicular to the ground
+        // Increase sunlight score if daytime
+        // Increase water score if it is raining
         RaycastHit[] hits;
         hits = Physics.RaycastAll(transform.position, transform.TransformDirection(Vector3.forward), rayMaxDistance, raycastMask);
         foreach (RaycastHit hit in hits)
